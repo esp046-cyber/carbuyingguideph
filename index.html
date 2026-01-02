@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 PH Car Buying Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            padding: 1%;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e94560 0%, #c4314a 100%);
+            padding: 12px 1%;
+            border-radius: 8px;
+            margin-bottom: 1%;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+
+        .header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .header p {
+            font-size: 11px;
+            text-align: center;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1%;
+            margin-bottom: 1%;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: thin;
+            scrollbar-color: #e94560 #16213e;
+        }
+
+        .tab {
+            background: #0f3460;
+            border: none;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .tab:hover {
+            background: #e94560;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: #e94560;
+            box-shadow: 0 2px 10px rgba(233, 69, 96, 0.5);
+        }
+
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .card {
+            background: rgba(15, 52, 96, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 1%;
+            border-left: 4px solid #e94560;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            background: rgba(15, 52, 96, 0.8);
+            transform: translateX(4px);
+        }
+
+        .card h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: #e94560;
+        }
+
+        .card p, .card li {
+            font-size: 12px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .card ul {
+            margin-left: 16px;
+            margin-top: 6px;
+        }
+
+        .card li {
+            margin-bottom: 4px;
+        }
+
+        .calculator {
+            background: rgba(15, 52, 96, 0.8);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 1%;
+        }
+
+        .calc-group {
+            margin-bottom: 10px;
+        }
+
+        .calc-group label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 4px;
+            color: #e94560;
+        }
+
+        .calc-group input, .calc-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #0f3460;
+            border-radius: 6px;
+            font-size: 13px;
+            background: #1a1a2e;
+            color: #fff;
+        }
+
+        .calc-btn {
+            background: #e94560;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .calc-btn:hover {
+            background: #c4314a;
+            transform: scale(1.02);
+        }
+
+        .result {
+            background: rgba(233, 69, 96, 0.2);
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            border: 1px solid #e94560;
+        }
+
+        .result h4 {
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: #e94560;
+        }
+
+        .result p {
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        .price-range {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1%;
+            margin-bottom: 1%;
+        }
+
+        .price-card {
+            background: rgba(15, 52, 96, 0.6);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #e94560;
+        }
+
+        .price-card h4 {
+            font-size: 13px;
+            color: #e94560;
+            margin-bottom: 6px;
+        }
+
+        .price-card p {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e94560;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+
+        .checklist-item {
+            background: rgba(15, 52, 96, 0.4);
+            padding: 8px;
+            margin-bottom: 6px;
+            border-radius: 6px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            opacity: 0.6;
+            margin-top: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚗 2026 PH Car Buying Guide</h1>
+        <p>Your complete guide to buying a car in the Philippines</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('budget')">💰 Budget</button>
+        <button class="tab" onclick="showTab('brands')">🏢 Brands</button>
+        <button class="tab" onclick="showTab('tips')">💡 Tips</button>
+        <button class="tab" onclick="showTab('calculator')">🧮 Calculator</button>
+        <button class="tab" onclick="showTab('checklist')">✅ Checklist</button>
+        <button class="tab" onclick="showTab('fuel')">⛽ Fuel</button>
+        <button class="tab" onclick="showTab('maintenance')">🔧 Maintenance</button>
+        <button class="tab" onclick="showTab('dealers')">🏢 Dealers</button>
+        <button class="tab" onclick="showTab('resale')">💵 Resale</button>
+    </div>
+
+    <div id="budget" class="content active">
+        <div class="price-range">
+            <div class="price-card">
+                <h4>Entry Level</h4>
+                <p>₱500K - ₱800K</p>
+            </div>
+            <div class="price-card">
+                <h4>Mid Range</h4>
+                <p>₱800K - ₱1.5M</p>
+            </div>
+            <div class="price-card">
+                <h4>Premium</h4>
+                <p>₱1.5M - ₱3M</p>
+            </div>
+            <div class="price-card">
+                <h4>Luxury</h4>
+                <p>₱3M+</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Entry Level (₱500K - ₱800K)</h3>
+            <p><span class="badge">Best Sellers</span></p>
+            <ul>
+                <li>Suzuki S-Presso - ₱548K-₱633K</li>
+                <li>Toyota Wigo - ₱573K-₱713K</li>
+                <li>Mitsubishi Mirage - ₱625K-₱791K</li>
+                <li>Suzuki Celerio - ₱575K-₱661K</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Mid Range (₱800K - ₱1.5M)</h3>
+            <p><span class="badge">Popular Choice</span></p>
+            <ul>
+                <li>Toyota Vios - ₱745K-₱1.062M</li>
+                <li>Honda City - ₱884K-₱1.095M</li>
+                <li>Mazda 2 - ₱874K-₱1.034M</li>
+                <li>Hyundai Accent - ₱813K-₱1.048M</li>
+                <li>Suzuki Swift - ₱814K-₱936K</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>SUV / MPV (₱1M - ₱2M)</h3>
+            <p><span class="badge">Family Favorite</span></p>
+            <ul>
+                <li>Toyota Rush - ₱1.046M-₱1.183M</li>
+                <li>Mitsubishi Xpander - ₱1.015M-₱1.300M</li>
+                <li>Honda BR-V - ₱1.122M-₱1.277M</li>
+                <li>Suzuki XL7 - ₱1.028M-₱1.178M</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="brands" class="content">
+        <div class="card">
+            <h3>🏆 Toyota</h3>
+            <p><span class="badge">Market Leader</span><span class="badge">High Resale</span></p>
+            <p>Best known for reliability and extensive dealer network across the Philippines. Strong resale value.</p>
+            <ul>
+                <li>Top Models: Vios, Innova, Fortuner, Wigo</li>
+                <li>After-sales: Excellent nationwide</li>
+                <li>Parts: Readily available</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🏆 Honda</h3>
+            <p><span class="badge">Performance</span><span class="badge">Quality</span></p>
+            <p>Premium build quality with sporty driving dynamics. Strong brand loyalty in PH.</p>
+            <ul>
+                <li>Top Models: City, Civic, CR-V, BR-V</li>
+                <li>After-sales: Very good in major cities</li>
+                <li>Parts: Widely available</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🏆 Mitsubishi</h3>
+            <p><span class="badge">Durable</span><span class="badge">Value</span></p>
+            <p>Known for durability and good value for money. Strong in SUV/MPV segment.</p>
+            <ul>
+                <li>Top Models: Xpander, Mirage, Montero Sport</li>
+                <li>After-sales: Good nationwide coverage</li>
+                <li>Parts: Affordable and available</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🏆 Suzuki</h3>
+            <p><span class="badge">Affordable</span><span class="badge">Fuel Efficient</span></p>
+            <p>Budget-friendly options with excellent fuel economy. Growing dealer network.</p>
+            <ul>
+                <li>Top Models: Swift, Celerio, XL7, S-Presso</li>
+                <li>After-sales: Improving coverage</li>
+                <li>Parts: Cost-effective</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🏆 Mazda</h3>
+            <p><span class="badge">Premium Feel</span><span class="badge">Fun to Drive</span></p>
+            <p>Stylish designs with engaging driving experience. Premium positioning.</p>
+            <ul>
+                <li>Top Models: Mazda2, Mazda3, CX-5, CX-30</li>
+                <li>After-sales: Good in major cities</li>
+                <li>Parts: Moderate pricing</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🏆 Hyundai</h3>
+            <p><span class="badge">Tech-loaded</span><span class="badge">Warranty</span></p>
+            <p>Modern features and competitive pricing. Strong warranty programs.</p>
+            <ul>
+                <li>Top Models: Accent, Tucson, Stargazer, Creta</li>
+                <li>After-sales: Expanding network</li>
+                <li>Parts: Competitive pricing</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="tips" class="content">
+        <div class="card">
+            <h3>📋 Pre-Purchase Research</h3>
+            <ul>
+                <li>Set a realistic budget (30% down, 70% financing max)</li>
+                <li>Research model reliability and common issues</li>
+                <li>Check maintenance costs and parts availability</li>
+                <li>Read owner reviews and join FB groups</li>
+                <li>Compare insurance quotes from different providers</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>💡 Negotiation Tips</h3>
+            <ul>
+                <li>Visit multiple dealerships for best price</li>
+                <li>End of month/quarter = better deals</li>
+                <li>Ask for freebies: tint, mats, rust proofing</li>
+                <li>Negotiate total price, not monthly payment</li>
+                <li>Get pre-approved bank financing for leverage</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🚨 Red Flags (Used Cars)</h3>
+            <ul>
+                <li>Incomplete papers or "for transfer" tags</li>
+                <li>Mismatched VIN or chassis numbers</li>
+                <li>Fresh paint on old car (possible accident)</li>
+                <li>Seller rushing the sale</li>
+                <li>Unusually low price for year/model</li>
+                <li>No maintenance records available</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>📄 Required Documents</h3>
+            <ul>
+                <li>Valid driver's license</li>
+                <li>2 valid IDs</li>
+                <li>Proof of income (payslip/ITR/bank statement)</li>
+                <li>Proof of billing (utilities under your name)</li>
+                <li>LTO registration (for trade-in)</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🔧 First Year Costs</h3>
+            <ul>
+                <li>Insurance: ₱15K-₱40K (comprehensive)</li>
+                <li>Registration: ₱3K-₱8K</li>
+                <li>Preventive Maintenance: ₱3K-₱6K per visit</li>
+                <li>Fuel: ₱3K-₱8K per month (depends on usage)</li>
+                <li>Parking: ₱1K-₱5K per month</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Electric Vehicles in PH 2026</h3>
+            <p><span class="badge">Growing Market</span></p>
+            <ul>
+                <li>BYD Atto 3 - ₱1.498M-₱1.798M</li>
+                <li>MG ZS EV - ₱1.488M-₱1.788M</li>
+                <li>Charging infrastructure improving in Metro Manila</li>
+                <li>Lower running costs vs gasoline</li>
+                <li>Government incentives available</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="calculator" class="content">
+        <div class="calculator">
+            <h3 style="font-size: 15px; margin-bottom: 12px; color: #e94560;">💰 Loan Calculator</h3>
+            
+            <div class="calc-group">
+                <label>Car Price (₱)</label>
+                <input type="number" id="carPrice" value="800000" min="0">
+            </div>
+
+            <div class="calc-group">
+                <label>Down Payment (₱)</label>
+                <input type="number" id="downPayment" value="240000" min="0">
+            </div>
+
+            <div class="calc-group">
+                <label>Interest Rate (%)</label>
+                <input type="number" id="interestRate" value="7" min="0" max="30" step="0.1">
+            </div>
+
+            <div class="calc-group">
+                <label>Loan Term (Years)</label>
+                <select id="loanTerm">
+                    <option value="1">1 Year</option>
+                    <option value="2">2 Years</option>
+                    <option value="3" selected>3 Years</option>
+                    <option value="4">4 Years</option>
+                    <option value="5">5 Years</option>
+                </select>
+            </div>
+
+            <button class="calc-btn" onclick="calculateLoan()">Calculate Monthly Payment</button>
+
+            <div id="loanResult" style="display: none;" class="result">
+                <h4>Your Monthly Payment</h4>
+                <p id="monthlyPayment"></p>
+                <p id="totalPayment"></p>
+                <p id="totalInterest"></p>
+            </div>
+        </div>
+
+        <div class="calculator">
+            <h3 style="font-size: 15px; margin-bottom: 12px; color: #e94560;">📊 Affordability Calculator</h3>
+            
+            <div class="calc-group">
+                <label>Monthly Income (₱)</label>
+                <input type="number" id="monthlyIncome" value="30000" min="0">
+            </div>
+
+            <div class="calc-group">
+                <label>Monthly Expenses (₱)</label>
+                <input type="number" id="monthlyExpenses" value="15000" min="0">
+            </div>
+
+            <button class="calc-btn" onclick="calculateAffordability()">Check Affordability</button>
+
+            <div id="affordResult" style="display: none;" class="result">
+                <h4>What You Can Afford</h4>
+                <p id="affordablePayment"></p>
+                <p id="affordablePrice"></p>
+                <p id="affordabilityAdvice"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="checklist" class="content">
+        <div class="card">
+            <h3>✅ Pre-Purchase Checklist</h3>
+            <p style="margin-bottom: 10px;">Check off items as you complete them:</p>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="check1">
+                <label for="check1">Research 3-5 car models within budget</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check2">
+                <label for="check2">Get pre-approved for car loan</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check3">
+                <label for="check3">Visit at least 3 dealerships</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check4">
+                <label for="check4">Test drive preferred models</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check5">
+                <label for="check5">Get insurance quotations</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check6">
+                <label for="check6">Prepare required documents</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check7">
+                <label for="check7">Negotiate price and terms</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check8">
+                <label for="check8">Review contract thoroughly</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🔍 Test Drive Checklist</h3>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="test1">
+                <label for="test1">Check visibility (mirrors, blind spots)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="test2">
+                <label for="test2">Test acceleration and braking</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="test3">
+                <label for="test3">Check suspension on rough road</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="test4">
+                <label for="test4">Test air conditioning effectiveness</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="test5">
+                <label for="test5">Check all electronics and features</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="test6">
+                <label for="test6">Test parking and maneuverability</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="test7">
+                <label for="test7">Listen for unusual noises</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="test8">
+                <label for="test8">Check cargo/trunk space</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📝 Documentation Checklist</h3>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="doc1">
+                <label for="doc1">Original CR (Certificate of Registration)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="doc2">
+                <label for="doc2">Official Receipt (OR)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="doc3">
+                <label for="doc3">Deed of Sale (notarized)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="doc4">
+                <label for="doc4">Certificate of Emission Test</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="doc5">
+                <label for="doc5">Insurance Certificate</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="doc6">
+                <label for="doc6">Transfer of Ownership documents</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="doc7">
+                <label for="doc7">Valid ID copies</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="doc8">
+                <label for="doc8">Proof of payment receipts</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="fuel" class="content">
+        <div class="calculator">
+            <h3 style="font-size: 15px; margin-bottom: 12px; color: #e94560;">⛽ Fuel Cost Calculator</h3>
+            
+            <div class="calc-group">
+                <label>Daily Distance (km)</label>
+                <input type="number" id="dailyKm" value="40" min="0">
+            </div>
+
+            <div class="calc-group">
+                <label>Fuel Efficiency (km/L)</label>
+                <input type="number" id="fuelEfficiency" value="15" min="1" step="0.1">
+            </div>
+
+            <div class="calc-group">
+                <label>Fuel Price per Liter (₱)</label>
+                <input type="number" id="fuelPrice" value="65" min="0" step="0.5">
+            </div>
+
+            <div class="calc-group">
+                <label>Working Days per Month</label>
+                <input type="number" id="workDays" value="22" min="1" max="31">
+            </div>
+
+            <button class="calc-btn" onclick="calculateFuel()">Calculate Fuel Costs</button>
+
+            <div id="fuelResult" style="display: none;" class="result">
+                <h4>Your Fuel Costs</h4>
+                <p id="dailyFuelCost"></p>
+                <p id="monthlyFuelCost"></p>
+                <p id="yearlyFuelCost"></p>
+                <p id="fuelConsumption"></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🚗 Fuel Efficiency by Category</h3>
+            <p style="margin-bottom: 8px;">Average km/L ratings:</p>
+            
+            <div class="checklist-item">
+                <span>⚡ EV (Electric)</span>
+                <span style="margin-left: auto; color: #e94560;">~7 km/kWh</span>
+            </div>
+            <div class="checklist-item">
+                <span>🔋 Hybrid</span>
+                <span style="margin-left: auto; color: #e94560;">20-25 km/L</span>
+            </div>
+            <div class="checklist-item">
+                <span>🚙 Sedan (Gasoline)</span>
+                <span style="margin-left: auto; color: #e94560;">12-18 km/L</span>
+            </div>
+            <div class="checklist-item">
+                <span>🚐 MPV/SUV (Gasoline)</span>
+                <span style="margin-left: auto; color: #e94560;">10-15 km/L</span>
+            </div>
+            <div class="checklist-item">
+                <span>🛻 Pickup (Diesel)</span>
+                <span style="margin-left: auto; color: #e94560;">12-16 km/L</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>💰 Fuel Type Comparison (2026 PH)</h3>
+            <ul>
+                <li><strong>Gasoline 95:</strong> ₱63-₱67/L - Most common, widely available</li>
+                <li><strong>Gasoline 97:</strong> ₱68-₱72/L - Premium, better for high compression engines</li>
+                <li><strong>Diesel:</strong> ₱58-₱62/L - More efficient, better torque</li>
+                <li><strong>Electricity:</strong> ₱10-₱15/kWh - Cheapest per km, limited charging stations</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>💡 Fuel Saving Tips</h3>
+            <ul>
+                <li>Maintain proper tire pressure (saves 3-5%)</li>
+                <li>Avoid aggressive acceleration and braking</li>
+                <li>Remove unnecessary weight from car</li>
+                <li>Use cruise control on highways</li>
+                <li>Regular engine maintenance (clean air filter)</li>
+                <li>Close windows at high speed (reduces drag)</li>
+                <li>Plan routes to avoid traffic jams</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="maintenance" class="content">
+        <div class="calculator">
+            <h3 style="font-size: 15px; margin-bottom: 12px; color: #e94560;">🔧 Maintenance Cost Estimator</h3>
+            
+            <div class="calc-group">
+                <label>Car Brand</label>
+                <select id="maintBrand">
+                    <option value="toyota">Toyota</option>
+                    <option value="honda">Honda</option>
+                    <option value="mitsubishi">Mitsubishi</option>
+                    <option value="suzuki">Suzuki</option>
+                    <option value="mazda">Mazda</option>
+                    <option value="hyundai">Hyundai</option>
+                </select>
+            </div>
+
+            <div class="calc-group">
+                <label>Vehicle Type</label>
+                <select id="maintType">
+                    <option value="sedan">Sedan</option>
+                    <option value="suv">SUV/MPV</option>
+                    <option value="pickup">Pickup</option>
+                </select>
+            </div>
+
+            <div class="calc-group">
+                <label>Annual Mileage (km)</label>
+                <input type="number" id="annualMileage" value="15000" min="0" step="1000">
+            </div>
+
+            <button class="calc-btn" onclick="calculateMaintenance()">Estimate Maintenance Costs</button>
+
+            <div id="maintResult" style="display: none;" class="result">
+                <h4>5-Year Maintenance Estimate</h4>
+                <p id="year1Cost"></p>
+                <p id="year5Cost"></p>
+                <p id="totalMaintCost"></p>
+                <p id="avgAnnualCost"></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📅 PMS Schedule (Typical)</h3>
+            <ul>
+                <li><strong>5,000 km:</strong> Oil change, filter - ₱2,000-₱3,500</li>
+                <li><strong>10,000 km:</strong> Oil + minor inspection - ₱2,500-₱4,000</li>
+                <li><strong>20,000 km:</strong> Major service - ₱4,000-₱7,000</li>
+                <li><strong>40,000 km:</strong> Major + brake service - ₱6,000-₱12,000</li>
+                <li><strong>60,000 km:</strong> Comprehensive service - ₱8,000-₱15,000</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🔩 Common Replacement Costs</h3>
+            <p style="margin-bottom: 8px;">Parts & Labor (estimates):</p>
+            
+            <div class="checklist-item">
+                <span>Engine Oil (synthetic)</span>
+                <span style="margin-left: auto; color: #e94560;">₱1,500-₱3,000</span>
+            </div>
+            <div class="checklist-item">
+                <span>Oil Filter</span>
+                <span style="margin-left: auto; color: #e94560;">₱300-₱800</span>
+            </div>
+            <div class="checklist-item">
+                <span>Air Filter</span>
+                <span style="margin-left: auto; color: #e94560;">₱400-₱1,200</span>
+            </div>
+            <div class="checklist-item">
+                <span>Brake Pads (set)</span>
+                <span style="margin-left: auto; color: #e94560;">₱2,500-₱6,000</span>
+            </div>
+            <div class="checklist-item">
+                <span>Tires (each)</span>
+                <span style="margin-left: auto; color: #e94560;">₱3,000-₱8,000</span>
+            </div>
+            <div class="checklist-item">
+                <span>Battery</span>
+                <span style="margin-left: auto; color: #e94560;">₱3,500-₱7,000</span>
+            </div>
+            <div class="checklist-item">
+                <span>Spark Plugs (set)</span>
+                <span style="margin-left: auto; color: #e94560;">₱1,500-₱4,000</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>⚠️ Major Repairs to Budget For</h3>
+            <ul>
+                <li><strong>Transmission:</strong> ₱30,000-₱100,000 (worst case)</li>
+                <li><strong>Engine rebuild:</strong> ₱50,000-₱150,000</li>
+                <li><strong>AC compressor:</strong> ₱15,000-₱35,000</li>
+                <li><strong>Clutch replacement:</strong> ₱10,000-₱25,000</li>
+                <li><strong>Suspension overhaul:</strong> ₱15,000-₱40,000</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>💡 Maintenance Tips</h3>
+            <ul>
+                <li>Follow manufacturer's PMS schedule strictly</li>
+                <li>Use authorized service centers for warranty coverage</li>
+                <li>Keep all maintenance records/receipts</li>
+                <li>Check fluids monthly (oil, coolant, brake)</li>
+                <li>Rotate tires every 10,000 km</li>
+                <li>Don't skip minor services to save money</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="dealers" class="content">
+        <div class="card">
+            <h3>🏢 Toyota Dealerships (Major Areas)</h3>
+            <p><span class="badge">Most Widespread</span></p>
+            <ul>
+                <li><strong>Metro Manila:</strong> 40+ locations including Quezon Ave, EDSA Greenfield, Alabang</li>
+                <li><strong>Cebu:</strong> 5 locations - Mandaue, Cebu City</li>
+                <li><strong>Davao:</strong> 3 locations - JP Laurel, Lanang</li>
+                <li><strong>Pampanga:</strong> Angeles, San Fernando</li>
+                <li><strong>Iloilo:</strong> Mandurriao, City Proper</li>
+                <li>📞 Hotline: (02) 8819-7000</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🏢 Honda Dealerships</h3>
+            <p><span class="badge">Premium Network</span></p>
+            <ul>
+                <li><strong>Metro Manila:</strong> 25+ locations including Commonwealth, Libis, Pasig, Alabang</li>
+                <li><strong>Cebu:</strong> Mandaue, Cebu City</li>
+                <li><strong>Davao:</strong> Lanang, Buhangin</li>
+                <li><strong>Pampanga:</strong> Angeles City</li>
+                <li><strong>Cagayan de Oro:</strong> Carmen</li>
+                <li>📞 Hotline: (02) 8858-4663</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🏢 Mitsubishi Dealerships</h3>
+            <p><span class="badge">Good Coverage</span></p>
+            <ul>
+                <li><strong>Metro Manila:</strong> 30+ locations including EDSA, Shaw, Ortigas</li>
+                <li><strong>Cebu:</strong> Multiple locations</li>
+                <li><strong>Davao:</strong> Downtown, Lanang</li>
+                <li><strong>Pampanga:</strong> San Fernando</li>
+                <li><strong>Iloilo:</strong> City Proper</li>
+                <li>📞 Hotline: (02) 8888-1800</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🏢 Suzuki Dealerships</h3>
+            <p><span class="badge">Expanding</span></p>
+            <ul>
+                <li><strong>Metro Manila:</strong> 20+ locations including Katipunan, C5, Alabang</li>
+                <li><strong>Cebu:</strong> Mandaue</li>
+                <li><strong>Davao:</strong> JP Laurel</li>
+                <li><strong>Bulacan:</strong> Meycauayan, Sta. Maria</li>
+                <li><strong>Laguna:</strong> Calamba, Sta. Rosa</li>
+                <li>📞 Hotline: (02) 8403-7897</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🏢 Mazda Dealerships</h3>
+            <p><span class="badge">Premium Locations</span></p>
+            <ul>
+                <li><strong>Metro Manila:</strong> BGC, Makati, Alabang, Quezon City</li>
+                <li><strong>Cebu:</strong> Cebu City</li>
+                <li><strong>Davao:</strong> Lanang</li>
+                <li><strong>Pampanga:</strong> Clark</li>
+                <li>📞 Hotline: (02) 8403-2639</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🏢 Hyundai Dealerships</h3>
+            <p><span class="badge">Growing Network</span></p>
+            <ul>
+                <li><strong>Metro Manila:</strong> 25+ locations including Commonwealth, EDSA, Alabang</li>
+                <li><strong>Cebu:</strong> Mandaue, Cebu City</li>
+                <li><strong>Davao:</strong> Lanang</li>
+                <li><strong>Pampanga:</strong> San Fernando</li>
+                <li><strong>Cavite:</strong> Bacoor, Imus</li>
+                <li>📞 Hotline: (02) 8631-1000</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>💡 Service Center Tips</h3>
+            <ul>
+                <li>Book PMS appointments online or via phone</li>
+                <li>Ask about casa vs multi-brand shops after warranty</li>
+                <li>Check Google reviews before choosing a dealer</li>
+                <li>Weekend appointments fill up fast - book early</li>
+                <li>Keep service booklet updated for warranty claims</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="resale" class="content">
+        <div class="calculator">
+            <h3 style="font-size: 15px; margin-bottom: 12px; color: #e94560;">💵 Resale Value Estimator</h3>
+            
+            <div class="calc-group">
+                <label>Original Purchase Price (₱)</label>
+                <input type="number" id="purchasePrice" value="800000" min="0">
+            </div>
+
+            <div class="calc-group">
+                <label>Brand Resale Rating</label>
+                <select id="resaleBrand">
+                    <option value="0.85">Toyota (Excellent)</option>
+                    <option value="0.82">Honda (Very Good)</option>
+                    <option value="0.78">Mitsubishi (Good)</option>
+                    <option value="0.75">Suzuki (Good)</option>
+                    <option value="0.73">Mazda (Fair)</option>
+                    <option value="0.70">Hyundai (Fair)</option>
+                    <option value="0.65">Others (Average)</option>
+                </select>
+            </div>
+
+            <div class="calc-group">
+                <label>Years Owned</label>
+                <select id="yearsOwned">
+                    <option value="1">1 Year</option>
+                    <option value="2">2 Years</option>
+                    <option value="3" selected>3 Years</option>
+                    <option value="4">4 Years</option>
+                    <option value="5">5 Years</option>
+                    <option value="6">6 Years</option>
+                    <option value="7">7 Years</option>
+                    <option value="8">8 Years</option>
+                    <option value="9">9 Years</option>
+                    <option value="10">10 Years</option>
+                </select>
+            </div>
+
+            <div class="calc-group">
+                <label>Condition</label>
+                <select id="carCondition">
+                    <option value="1.1">Excellent (mint, low mileage)</option>
+                    <option value="1.0" selected>Good (well-maintained)</option>
+                    <option value="0.9">Fair (normal wear)</option>
+                    <option value="0.8">Poor (needs repairs)</option>
+                </select>
+            </div>
+
+            <button class="calc-btn" onclick="calculateResale()">Estimate Resale Value</button>
+
+            <div id="resaleResult" style="display: none;" class="result">
+                <h4>Estimated Resale Value</h4>
+                <p id="resaleValue"></p>
+                <p id="depreciation"></p>
+                <p id="retentionRate"></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📊 Depreciation Rates by Brand (Annual Average)</h3>
+            
+            <div class="checklist-item">
+                <span>Toyota</span>
+                <span style="margin-left: auto; color: #e94560;">12-15% per year</span>
+            </div>
+            <div class="checklist-item">
+                <span>Honda</span>
+                <span style="margin-left: auto; color: #e94560;">15-18% per year</span>
+            </div>
+            <div class="checklist-item">
+                <span>Mitsubishi</span>
+                <span style="margin-left: auto; color: #e94560;">18-22% per year</span>
+            </div>
+            <div class="checklist-item">
+                <span>Suzuki</span>
+                <span style="margin-left: auto; color: #e94560;">20-25% per year</span>
+            </div>
+            <div class="checklist-item">
+                <span>Mazda</span>
+                <span style="margin-left: auto; color: #e94560;">22-27% per year</span>
+            </div>
+            <div class="checklist-item">
+                <span>Hyundai</span>
+                <span style="margin-left: auto; color: #e94560;">25-30% per year</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🏆 Best Resale Value Models (PH)</h3>
+            <p><span class="badge">Top Performers</span></p>
+            <ul>
+                <li><strong>Toyota Vios</strong> - 65-70% value after 5 years</li>
+                <li><strong>Toyota Innova</strong> - 65-68% value after 5 years</li>
+                <li><strong>Honda City</strong> - 60-65% value after 5 years</li>
+                <li><strong>Toyota Fortuner</strong> - 60-65% value after 5 years</li>
+                <li><strong>Mitsubishi Montero Sport</strong> - 55-60% value after 5 years</li>
+                <li><strong>Honda CR-V</strong> - 55-60% value after 5 years</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>💡 Maximize Resale Value</h3>
+            <ul>
+                <li><strong>Choose popular colors:</strong> White, silver, black sell fastest</li>
+                <li><strong>Keep complete records:</strong> All service receipts and OR/CR</li>
+                <li><strong>Maintain religiously:</strong> Follow PMS schedule strictly</li>
+                <li><strong>Avoid modifications:</strong> Stock cars sell better</li>
+                <li><strong>Low mileage matters:</strong> Under 15,000 km/year is ideal</li>
+                <li><strong>No accidents:</strong> Even repaired damage lowers value 20-30%</li>
+                <li><strong>Clean title:</strong> First owner cars sell for 10-15% more</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>📉 What Hurts Resale Value</h3>
+            <ul>
+                <li>Modified engine or suspension (-15-25%)</li>
+                <li>Aftermarket body kits (-10-20%)</li>
+                <li>Unusual colors like yellow, green (-10-15%)</li>
+                <li>High mileage (over 20,000 km/year) (-15-25%)</li>
+                <li>Smoking inside car (-5-10%)</li>
+                <li>Missing service records (-10-15%)</li>
+                <li>Flood damage history (-30-50%)</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🕐 Best Time to Sell</h3>
+            <ul>
+                <li><strong>3-5 years:</strong> Sweet spot - still reliable, good value</li>
+                <li><strong>Before 100,000 km:</strong> Psychological barrier for buyers</li>
+                <li><strong>December-January:</strong> Bonus season, more buyers</li>
+                <li><strong>Before major repairs:</strong> Sell before expensive maintenance</li>
+                <li><strong>Within warranty:</strong> Transferable warranty adds value</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>📱 Where to Sell Your Car</h3>
+            <ul>
+                <li><strong>Trade-in at dealer:</strong> Convenient but lowest price (-10-20%)</li>
+                <li><strong>FB Marketplace:</strong> Largest audience, free listing</li>
+                <li><strong>Carousell:</strong> Popular platform, verified buyers</li>
+                <li><strong>OLX Philippines:</strong> Good reach, free to list</li>
+                <li><strong>Car buying services:</strong> Quick but lower offers</li>
+                <li><strong>Auto dealerships:</strong> Consignment option available</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>2026 Philippine Car Buying Guide | Prices are estimates and may vary</p>
+        <p>Always verify current prices with official dealers</p>
+    </div>
+
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            const contents = document.querySelectorAll('.content');
+            const tabs = document.querySelectorAll('.tab');
+            
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Loan Calculator
+        function calculateLoan() {
+            const carPrice = parseFloat(document.getElementById('carPrice').value);
+            const downPayment = parseFloat(document.getElementById('downPayment').value);
+            const interestRate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
+            const loanTerm = parseInt(document.getElementById('loanTerm').value) * 12;
+            
+            const principal = carPrice - downPayment;
+            
+            if (principal <= 0) {
+                alert('Down payment must be less than car price');
+                return;
+            }
+            
+            // Monthly payment formula: M = P * [r(1+r)^n] / [(1+r)^n - 1]
+            const monthlyPayment = principal * (interestRate * Math.pow(1 + interestRate, loanTerm)) / (Math.pow(1 + interestRate, loanTerm) - 1);
+            const totalPayment = monthlyPayment * loanTerm;
+            const totalInterest = totalPayment - principal;
+            
+            document.getElementById('monthlyPayment').textContent = `Monthly: ₱${monthlyPayment.toLocaleString('en-PH', {maximumFractionDigits: 2})}`;
+            document.getElementById('totalPayment').textContent = `Total Payment: ₱${totalPayment.toLocaleString('en-PH', {maximumFractionDigits: 2})}`;
+            document.getElementById('totalInterest').textContent = `Total Interest: ₱${totalInterest.toLocaleString('en-PH', {maximumFractionDigits: 2})}`;
+            
+            document.getElementById('loanResult').style.display = 'block';
+        }
+
+        // Affordability Calculator
+        function calculateAffordability() {
+            const monthlyIncome = parseFloat(document.getElementById('monthlyIncome').value);
+            const monthlyExpenses = parseFloat(document.getElementById('monthlyExpenses').value);
+            
+            const disposableIncome = monthlyIncome - monthlyExpenses;
+            const affordablePayment = disposableIncome * 0.3; // 30% rule
+            
+            // Estimate affordable car price (assuming 30% down, 7% interest, 3 years)
+            const estimatedLoan = affordablePayment * 36 / 1.11; // Simplified calculation
+            const affordableCarPrice = estimatedLoan / 0.7;
+            
+            document.getElementById('affordablePayment').textContent = `Max Monthly Payment: ₱${affordablePayment.toLocaleString('en-PH', {maximumFractionDigits: 2})}`;
+            document.getElementById('affordablePrice').textContent = `Estimated Affordable Price: ₱${affordableCarPrice.toLocaleString('en-PH', {maximumFractionDigits: 0})}`;
+            
+            let advice = '';
+            if (affordablePayment < 5000) {
+                advice = '⚠️ Consider saving more or looking at used cars';
+            } else if (affordablePayment < 10000) {
+                advice = '✅ Entry-level cars are within reach';
+            } else if (affordablePayment < 20000) {
+                advice = '✅ Mid-range cars are affordable for you';
+            } else {
+                advice = '✅ Premium options are within your budget';
+            }
+            
+            document.getElementById('affordabilityAdvice').textContent = advice;
+            document.getElementById('affordResult').style.display = 'block';
+        }
+
+        // Save checkbox states to memory
+        const checkboxStates = {};
+        
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                checkboxStates[this.id] = this.checked;
+            });
+            
+            // Restore state if exists
+            if (checkboxStates[checkbox.id]) {
+                checkbox.checked = checkboxStates[checkbox.id];
+            }
+        });
+
+        // Fuel Cost Calculator
+        function calculateFuel() {
+            const dailyKm = parseFloat(document.getElementById('dailyKm').value);
+            const fuelEfficiency = parseFloat(document.getElementById('fuelEfficiency').value);
+            const fuelPrice = parseFloat(document.getElementById('fuelPrice').value);
+            const workDays = parseInt(document.getElementById('workDays').value);
+            
+            const dailyLiters = dailyKm / fuelEfficiency;
+            const dailyCost = dailyLiters * fuelPrice;
+            const monthlyCost = dailyCost * workDays;
+            const yearlyCost = monthlyCost * 12;
+            const monthlyLiters = dailyLiters * workDays;
+            
+            document.getElementById('dailyFuelCost').textContent = `Daily: ₱${dailyCost.toLocaleString('en-PH', {maximumFractionDigits: 2})}`;
+            document.getElementById('monthlyFuelCost').textContent = `Monthly: ₱${monthlyCost.toLocaleString('en-PH', {maximumFractionDigits: 2})}`;
+            document.getElementById('yearlyFuelCost').textContent = `Yearly: ₱${yearlyCost.toLocaleString('en-PH', {maximumFractionDigits: 2})}`;
+            document.getElementById('fuelConsumption').textContent = `Consumption: ${monthlyLiters.toFixed(1)} liters/month`;
+            
+            document.getElementById('fuelResult').style.display = 'block';
+        }
+
+        // Maintenance Cost Estimator
+        function calculateMaintenance() {
+            const brand = document.getElementById('maintBrand').value;
+            const type = document.getElementById('maintType').value;
+            const mileage = parseFloat(document.getElementById('annualMileage').value);
+            
+            // Base costs per brand and type
+            const baseCosts = {
+                toyota: { sedan: 3500, suv: 4500, pickup: 4000 },
+                honda: { sedan: 4000, suv: 5000, pickup: 4500 },
+                mitsubishi: { sedan: 3200, suv: 4200, pickup: 3800 },
+                suzuki: { sedan: 2800, suv: 3800, pickup: 3500 },
+                mazda: { sedan: 4200, suv: 5200, pickup: 4800 },
+                hyundai: { sedan: 3500, suv: 4500, pickup: 4000 }
+            };
+            
+            const baseCost = baseCosts[brand][type];
+            const servicesPerYear = Math.ceil(mileage / 5000);
+            
+            // Year 1: Mostly oil changes
+            const year1 = baseCost * servicesPerYear;
+            
+            // Year 5: Includes major services and part replacements
+            const year5 = year1 * 2.2;
+            
+            // Total 5-year cost
+            const total5Year = year1 + (year1 * 1.2) + (year1 * 1.4) + (year1 * 1.6) + year5;
+            const avgAnnual = total5Year / 5;
+            
+            document.getElementById('year1Cost').textContent = `Year 1: ₱${year1.toLocaleString('en-PH', {maximumFractionDigits: 0})}`;
+            document.getElementById('year5Cost').textContent = `Year 5: ₱${year5.toLocaleString('en-PH', {maximumFractionDigits: 0})}`;
+            document.getElementById('totalMaintCost').textContent = `Total 5-Year: ₱${total5Year.toLocaleString('en-PH', {maximumFractionDigits: 0})}`;
+            document.getElementById('avgAnnualCost').textContent = `Average/Year: ₱${avgAnnual.toLocaleString('en-PH', {maximumFractionDigits: 0})}`;
+            
+            document.getElementById('maintResult').style.display = 'block';
+        }
+
+        // Resale Value Calculator
+        function calculateResale() {
+            const purchasePrice = parseFloat(document.getElementById('purchasePrice').value);
+            const brandFactor = parseFloat(document.getElementById('resaleBrand').value);
+            const yearsOwned = parseInt(document.getElementById('yearsOwned').value);
+            const condition = parseFloat(document.getElementById('carCondition').value);
+            
+            // Calculate depreciation (compound)
+            const depreciationRate = 1 - brandFactor;
+            const valueAfterDepreciation = purchasePrice * Math.pow((1 - depreciationRate), yearsOwned);
+            
+            // Apply condition factor
+            const estimatedValue = valueAfterDepreciation * condition;
+            
+            // Calculate total depreciation
+            const totalDepreciation = purchasePrice - estimatedValue;
+            const retentionPercent = (estimatedValue / purchasePrice) * 100;
+            
+            document.getElementById('resaleValue').textContent = `Estimated Value: ₱${estimatedValue.toLocaleString('en-PH', {maximumFractionDigits: 0})}`;
+            document.getElementById('depreciation').textContent = `Total Depreciation: ₱${totalDepreciation.toLocaleString('en-PH', {maximumFractionDigits: 0})}`;
+            document.getElementById('retentionRate').textContent = `Value Retention: ${retentionPercent.toFixed(1)}% of original price`;
+            
+            document.getElementById('resaleResult').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
